@@ -611,6 +611,15 @@ char *infix_to_postfix(const char *operation)
                 operation_postfix[final_size++] = ' ';
                 operation_postfix[final_size]   = '\0';
             }
+
+            if (!found_left) {
+                free(stack);
+                free(operation_postfix);
+                const char *msg = "mismatched parentheses: found ')' without '('";
+                write(2, msg, calc_size(msg));
+                write(2, "\n", 1);
+                return NULL;
+            }
             index++;
             if_minus = 0;
             continue;
@@ -787,7 +796,7 @@ int main(int argc, char **argv)
 {
 
     for (int i = 1; i < argc; i++) {
-        if (s_cmp(argv[i], "-h") || s_cmp(argv[i], "--help")) {
+        if (s_cmp(argv[i], "-h") == 0 || s_cmp(argv[i], "--help") == 0) {
             show_help();
             return 0;
         }

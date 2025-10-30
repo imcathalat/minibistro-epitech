@@ -1,24 +1,18 @@
-CC      := gcc
-TARGET  := calc.exe
+CC     = gcc
+CFLAGS = -Wall -Wextra -Werror
+SRC    = main.c
+OBJ    = $(SRC:.c=.o)
+NAME   = calc
 
-SRC     := main.c
-OBJ     := $(SRC:.c=.o)
+all: $(NAME)
 
-all: $(TARGET)
-
-$(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
-
-%.o: %.c
-	$(CC) -c $< -o $@
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
-
