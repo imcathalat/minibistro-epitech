@@ -20,9 +20,10 @@ To know more about RPN, recommend the following videos:
 
 ### Instalation / Compilation
 
-1. Open your terminal.
-2. Navigate to the project folder.
-3. Run 
+1. Clone this repository
+2. Open your terminal.
+3. Navigate to the project folder.
+4. Run 
 ```bash
 make
 ```
